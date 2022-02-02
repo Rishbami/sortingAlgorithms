@@ -1,0 +1,68 @@
+#
+# Title: Implementations of OCR-specified sorting algorithms
+#
+# Description:  Implements the following sorting algorithms:
+#                 * Bubble Sort (standard)
+#                 * Bubble Sort (optimised)
+#                 * Insertion Sort
+#                 * Merge Sort
+#                 * Quick Sort
+#
+#               Uses per-sort implementation files
+#
+#
+
+import BubbleSortRR
+from copy import deepcopy
+
+
+if __name__ == "__main__":
+    # random_list = [-102, -5, 0, 6, 8, 17, 20, 23, 99]
+    random_list = [20, -5, 17, 8, 99, 23, -102, 0, 6]
+
+    print(random_list)
+    for sort in [BubbleSortRR.bubble_sort,
+                 BubbleSortRR.bubble_sort_improved]:
+
+        # Each time we call a sort we must make a full copy
+        # of the random list
+        list_to_sort = deepcopy(random_list)
+        sorted_list = sort(list_to_sort)
+
+        # print the name of the list, and the result
+        print(str(sort)+":")
+        print(sorted_list)
+
+
+
+
+
+
+# Standard bubble sort with no optimisation
+def bubble_sort(list_to_sort):
+    for i in range(len(list_to_sort)):
+        for j in range(len(list_to_sort)-1):
+            if list_to_sort[j] > list_to_sort[i]:
+                num = list_to_sort[i]
+                list_to_sort[i] = list_to_sort[j]
+                list_to_sort[j] = num
+            print(list_to_sort)
+    return list_to_sort
+
+
+# Improved bubble sort with the two 'standard' changes that we
+# covered in the lesson.
+swaps = 0
+def bubble_sort_improved(list_to_sort):
+    for i in range(len(list_to_sort)):
+        for j in range(len(list_to_sort)-(i+1)):
+            swaps = 0
+            if list_to_sort[j] > list_to_sort[i]:
+                swaps += 1
+                num = list_to_sort[i]
+                list_to_sort[i] = list_to_sort[j]
+                list_to_sort[j] = num
+        if swaps == 0:
+            return list_to_sort
+        print(list_to_sort)
+    return list_to_sort
