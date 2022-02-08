@@ -1,0 +1,50 @@
+from copy import deepcopy
+
+import BubbleSortRR
+import MergeSortRR
+import InsertionSortRR
+import QuickSortRR
+import random
+
+if __name__ == "__main__":
+    # random_list = [23, -102, 6, 0, -5, 17, 8, 99, 20]
+    # random_list = [19, 7, 23, 64, 15, 32, 72, 3]
+    the_sort = QuickSortRR.quick_sort
+    random = int(input('Insert the number of items to sort'))
+    print('Bad Buddle: 1')
+    print('Good Bubble: 2')
+    print('Insertion: 3')
+    print('Merge: 4')
+    print('Quick: 5')
+    which_sort = input('What sort would you like to use?')
+
+    data_length = 10
+    random_list = random.sample(range(0, data_length), data_length)
+
+    if which_sort == 1:
+        the_sort = BubbleSortRR.bubble_sort
+    elif which_sort == 2:
+        the_sort = BubbleSortRR.bubble_sort_improved
+    elif which_sort == 3:
+        the_sort = InsertionSortRR.insertion_sort_oop
+    elif which_sort == 4:
+        the_sort = MergeSortRR.merge_sort
+    elif which_sort == 5:
+        the_sort = QuickSortRR.quick_sort
+    else:
+        print('Quick sort is default')
+        the_sort = QuickSortRR.quick_sort
+
+    print(random_list)
+    # for sort in [BubbleSortRR.bubble_sort, BubbleSortRR.bubble_sort_improved,
+    #              MergeSortRR.merge_sort, InsertionSortRR.insertion_sort_oop]:
+
+    for sort in [random_list]:
+        # Each time we call a sort we must make a full copy
+        # of the random list
+        list_to_sort = deepcopy(random_list)
+        sorted_list = sort(list_to_sort)
+
+        # print the name of the list, and the result
+        print(str(sort)+":")
+        print(sorted_list)
