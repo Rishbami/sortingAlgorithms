@@ -6,7 +6,6 @@ def bubble_sort(list_to_sort):
                 num = list_to_sort[j]
                 list_to_sort[j] = list_to_sort[j+1]
                 list_to_sort[j+1] = num
-            print(list_to_sort)
     return list_to_sort
 
 
