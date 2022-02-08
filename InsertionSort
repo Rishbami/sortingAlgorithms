@@ -1,11 +1,30 @@
+# Insertion sort
+# In-place implementation
+# def insertion_sort(list_to_sort):
+#     # Examine each item in turn, starting with the second (index=1)
+#
+#
+#
+#     # Now look at the 'earlier' items, and either leave those where they are (if < item) or put the item in their
+#         # place and start shifting the remaining items up to and including index=j
+#
+#     return list_to_sort
+
+
+# Out-of-place implementation
 def insertion_sort_oop(list_to_sort):
     new_list = []
     new_list.append(list_to_sort[0])
     for i in range(1, len(list_to_sort)):
+        inserted = False
         for j in range(len(new_list)):
             if list_to_sort[i] < new_list[j]:
                 new_list.insert(j, list_to_sort[i])
+                inserted = True
+                print(new_list)
                 break
             else:
                 pass
+        if not inserted:
+            new_list.append(max(list_to_sort))
     return new_list
