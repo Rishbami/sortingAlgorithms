@@ -1,0 +1,37 @@
+def roboson_stuff(listA, listB):
+    new_list = []
+    pointerA = 0
+    pointerB = 0
+
+    while (pointerA < len(listA)) and (pointerB < len(listB)):
+        if listA[pointerA] > listB[pointerB]:
+            new_list.append(listB[pointerB])
+            pointerB += 1
+        else:
+            new_list.append(listA[pointerA])
+            pointerA += 1
+
+    while pointerA < len(listA):
+        new_list.append(listA[pointerA])
+        pointerA += 1
+
+    while pointerB < len(listB):
+        new_list.append(listB[pointerB])
+        pointerB += 1
+
+    return (new_list)
+
+
+def merge_sort(list_to_sort):
+    list_a = []
+    list_b = []
+    meta_list = []
+    for i in range(len(list_to_sort)):
+        meta_list.append([list_to_sort[i]])
+    while len(meta_list) > 1:
+        list_a = meta_list.pop(0)
+        list_b = meta_list.pop(0)
+        merged_list = roboson_stuff(list_a, list_b)
+        meta_list.append(merged_list)
+
+    return (meta_list[0])
