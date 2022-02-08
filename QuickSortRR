@@ -1,0 +1,84 @@
+#
+# This is an in-place implementation, so we are always working
+# on the same list, but the first and last indices tell us which
+# part of the list we are currently sorting.
+#
+
+#
+# Note - because we need the 'first'/'last' pointers, we will
+# need to 'wrap' the quicksort implementation to make it look
+# like the other sorts we have implemented.  We will have a
+# wrapper procedure which looks like this:
+#
+def quick_sort(list_to_sort):
+    quicksort_recursive(list_to_sort, 0, len(list_to_sort) - 1)
+    return list_to_sort
+
+
+#
+# Fill in the code sections which are currently left as 'pass'
+#
+def quicksort_recursive(list_to_sort, first, last):
+    #
+    # Check whether we have been asked to sort a one-item
+    # or zero-item range - if so, just return as we have
+    # hit the bottom of our recursive calls
+    #
+    if first >= last:
+        return
+
+    #
+    # Use the first item of the sublist as the pivot, then
+    # set the left and right pointers
+    #
+    pivot = list_to_sort[first]
+    left = first + 1
+    right = last
+
+    while left <= right:
+        print(list_to_sort)
+
+        while list_to_sort[left] < pivot:
+            # Move left pointer one place to the right
+            left += 1
+            # Check whether the left pointer has moved past the end (last)
+            if left > last:
+                break
+            pass
+
+        while list_to_sort[right] > pivot:
+            # Move right pointer one place to the left
+            right -= 1
+            # Check whether the right pointer has moved past the beginning (first)
+            if right < first:
+                break
+            pass
+
+        if left <= right:
+            # Swap contents of list at left and right pointers
+            num = list_to_sort[left]
+            list_to_sort[left] = list_to_sort[right]
+            list_to_sort[right] = num
+            # Move left pointer one place to the right
+            left += 1
+            # move right pointer one place to the left
+            right -= 1
+            pass
+
+    list_to_sort[first] = list_to_sort[right]
+    list_to_sort[right] = pivot
+
+    #
+    # Now swap the 'pivot' value with the right pointer value in order to put
+    # the pivot in the correct place
+    #
+    pass
+
+    #
+    # Recursively call Quicksort on the two sub-lists (either side of the re-positioned
+    # pivot)
+    #
+    quicksort_recursive(list_to_sort, first, right - 1)
+    quicksort_recursive(list_to_sort, left, last)
+
+    return list_to_sort
