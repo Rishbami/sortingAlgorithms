@@ -6,6 +6,7 @@ import MergeSortRR
 import InsertionSortRR
 import QuickSortRR
 import random
+from datetime import datetime
 
 if __name__ == "__main__":
     # random_list = [23, -102, 6, 0, -5, 17, 8, 99, 20]
@@ -36,6 +37,8 @@ if __name__ == "__main__":
         the_sort = QuickSortRR.quick_sort
 
     print(random_list)
+    start = datetime.now()
+
 
     for sort in [the_sort]:
         # Each time we call a sort we must make a full copy
@@ -46,3 +49,9 @@ if __name__ == "__main__":
         # print the name of the list, and the result
         print(str(sort)+":")
         print(sorted_list)
+        end = datetime.now()
+
+
+        timer = end - start
+
+        print(timer)
