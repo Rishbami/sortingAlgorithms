@@ -18,6 +18,8 @@ if __name__ == "__main__":
     print('Insertion: 3')
     print('Merge: 4')
     print('Quick: 5')
+    print('Python Quick: 6')
+    print('All the sorts: 7')
     which_sort = int(input('What sort would you like to use?'))
 
     random_list = random.sample(range(0, randomInt), randomInt)
@@ -32,26 +34,63 @@ if __name__ == "__main__":
         the_sort = MergeSortRR.merge_sort
     elif which_sort == 5:
         the_sort = QuickSortRR.quick_sort
+    elif which_sort == 6:
+        the_sort = QuickSortRR.quick_sort_python
+    elif which_sort == 7:
+        pass
     else:
         print('Quick sort is default')
         the_sort = QuickSortRR.quick_sort
 
     print(random_list)
-    start = datetime.now()
 
+    if which_sort != 7:
+        for sort in [the_sort]:
+            # Each time we call a sort we must make a full copy
+            # of the random list
+            start = datetime.now()
+            list_to_sort = deepcopy(random_list)
+            sorted_list = sort(list_to_sort)
 
-    for sort in [the_sort]:
-        # Each time we call a sort we must make a full copy
-        # of the random list
-        list_to_sort = deepcopy(random_list)
-        sorted_list = sort(list_to_sort)
+            # print the name of the list, and the result
+            print(str(sort) + ":")
+            print(sorted_list)
+            end = datetime.now()
 
-        # print the name of the list, and the result
-        print(str(sort)+":")
-        print(sorted_list)
-        end = datetime.now()
+            timer = end - start
 
+            print(timer)
 
-        timer = end - start
+    elif which_sort == 7:
+        i = 1
+        while i < 7:
+            if i == 1:
+                the_sort = BubbleSortRR.bubble_sort
+            elif i == 2:
+                the_sort = BubbleSortRR.bubble_sort_improved
+            elif i == 3:
+                the_sort = InsertionSortRR.insertion_sort_oop
+            elif i == 4:
+                the_sort = MergeSortRR.merge_sort
+            elif i == 5:
+                the_sort = QuickSortRR.quick_sort
+            elif i == 6:
+                the_sort = QuickSortRR.quick_sort_python
 
-        print(timer)
+            for sort in [the_sort]:
+                # Each time we call a sort we must make a full copy
+                # of the random list
+                start = datetime.now()
+                list_to_sort = deepcopy(random_list)
+                sorted_list = sort(list_to_sort)
+
+                # print the name of the list, and the result
+                end = datetime.now()
+                print(str(sort) + ":")
+                print(sorted_list)
+
+                timer = end - start
+
+                print(timer)
+
+                i += 1
